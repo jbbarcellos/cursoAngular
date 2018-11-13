@@ -8,11 +8,14 @@ import { constructDependencies } from '@angular/core/src/di/reflective_provider'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  photos = [
+  photos: object[] = [
 
   ]
 
   constructor(http: HttpClient){
-    console.log(http);
+    
+    http
+    .get<object[]>('http://localhost:3000/flavio/photos')
+    .subscribe(photos => this.photos = photos);
   }
 }
