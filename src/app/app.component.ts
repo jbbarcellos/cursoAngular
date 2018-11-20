@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { constructDependencies } from '@angular/core/src/di/reflective_provider';
+import { PhotoService } from './photos/photo/photo.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +11,10 @@ export class AppComponent {
 
   ]
 
-  constructor(http: HttpClient){
-    
-    http
-    .get<object[]>('http://localhost:3000/flavio/photos')
+  constructor(photoService: PhotoService){
+    photoService
+    .listFromUser('flavio')
     .subscribe(photos => this.photos = photos);
+    
   }
 }
