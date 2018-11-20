@@ -7,14 +7,17 @@ import { PhotoService } from './photos/photo/photo.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  photos: object[] = [
+  photos: any[] = [
 
   ]
 
   constructor(photoService: PhotoService){
     photoService
     .listFromUser('flavio')
-    .subscribe(photos => this.photos = photos);
+    .subscribe(photos => {
+      console.log(photos[0].description)
+      this.photos = photos
+    });
     
   }
 }
